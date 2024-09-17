@@ -1,0 +1,8 @@
+Sselect product_name, price from products;
+select * from products;
+
+select name, phone, salary from employee;
+
+select name, monthly_budget, last_employee_Id from department;
+
+select name, salary as old_salary,  salary*1.2 as increased_salary from employee e;
