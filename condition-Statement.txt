@@ -1,0 +1,91 @@
+select * from employee where price <10;
+select * from products where expiration_date < Date '2026-06-01';
+select name, monthly_budget from departments 
+where monthly_budget < 20000;
+
+select name, monthly_budget from department 
+where monthly_budget >= 20000;
+
+select name, phone, birthdate from employee
+ where birthdate < Date'01-01-1990';
+
+  select * from products where price < 10 and EXPIRATION_DATE < Date'2025-06-01'
+
+ SELECT * 
+FROM employee 
+WHERE (job_id LIKE 'AC_%' OR job_id LIKE 'MK_%') 
+AND salary < 3000;
+
+  select * from products where price = 10 and EXPIRATION_DATE < date '2026-07-31' or price = 25;
+
+
+-- !!!!()!!!!!
+select * from employee where  (department_id = 1 or department_id = 2 )
+and (salary < 3000 or birthdate < date'1985-01-01'); 
+
+--Duplicate
+
+select job_id from employee;
+
+select distinct(job_id), name from employee;
+
+select unique(job_id) from employee;
+
+-- order by 
+
+select * from employee order by birthdate;
+
+select * from employee order by salary desc;
+
+-- order by 2 columns
+select * from employee order by department_id, salary desc;
+
+--  null, is null, is not null
+select * from employee where phone = '1';
+
+select * from employee where phone != '1';
+
+select * from employee where phone = NULL ;
+select * from employee where phone is null;
+
+/** 
+The company has a cell phone that is assigned to the employee who is in charge of server support.
+All employees in the company can do that job, and they switch positions constantly, so the person 
+in charge of support can change at any time, but you can identify it by means of their phone number. 
+The phone number for the server support person is ‘1.234.567.8901’.
+**/
+select * from employee where salary > 4000 and phone is null ; 
+
+-- nulls first nulls last
+select * from employee order by phone nulls first; 
+select * from employee order by phone nulls last; 
+
+-- nvl(features, 'pharese must write instead of null')
+select * from employee where ( nvl(phone, '*') != '1.234.567.8901') ; 
+-- ||
+
+select id, name, salary + nvl(bonus, 0)  
+from employee;
+
+-- coalesce 
+select name, coalesce(phone, email, 'No Contact Info')as contact_Info from employee;
+SELECT name, COALESCE(phone, email, '*NO CONTACT DATA*') AS contact_name, salary 
+FROM employee;
+
+
+-- nvl2
+select id, nvl2(phone, name, job_id) from employee;
+
+
+SELECT DISTINCT
+    order_id,
+    customer_id AS "The Customer Id",
+    COALESCE(product_name, 'Unknown') AS product_name,
+    quantity,
+    price
+FROM orders
+WHERE quantity >= 10
+    AND price < 100
+    AND (customer_id = 101 OR customer_id = 102)
+ORDER BY order_id DESC;
+
