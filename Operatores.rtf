@@ -1,0 +1,62 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 select * from products where PRODUCT_NAME like 'A%';\
+select * from products where PRODUCT_NAME like 'o%n%';\
+select * from products where PRODUCT_NAME like '_n%' ;\
+select * from products where price in (5,10,25);\
+\
+select * from products;\
+select * from products where price <= 5 or price >= 10;\
+select * from products where price >5 and price < 10;\
+select * from products where price between 5 and 10;\
+\
+select * from employee;\
+SELECT *\
+From Employee\
+WHERE name LIKE '%O_%O%';\
+\
+SELECT *\
+FROM employee\
+WHERE name LIKE '%O%O%'\
+    AND name NOT LIKE '%OO%';\
+\
+ select * from department where MONTHLY_BUDGET	> 15000 and name like '%G%';\
+ \
+  select * from department where MONTHLY_BUDGET	> 15000 and \
+  (name like '%G%' or name like 'H%') order by id desc ;\
+\
+select * from employee where (job_id like 'HR%' or job_id like 'IT%') \
+and salary between 3000 and 5000 and\
+ BIRTHDATE between date'1970-01-01' and date'1990-01-01';\
+\
+select * from products where not price >10;\
+select * from products where not PRODUCT_NAME like '%s%';\
+select * from products where not (price >10 and PRODUCT_ID >1) ;\
+\
+SELECT * \
+FROM employee \
+WHERE (BIRTHDATE < DATE '1980-01-01' OR BIRTHDATE > DATE '1995-01-01')\
+  AND (SALARY) > 2000\
+  AND NAME NOT LIKE 'N%' \
+  AND NAME NOT LIKE '%N';\
+\
+    select * from employee where job_id = &job_id;\
+    SELECT * FROM employee WHERE job_id = '&job_id';\
+    SELECT * FROM employee WHERE salary = '&&sal' or salary = &&sal * 2;\
+undefine sal; -- with this you can get the prompt again\
+\
+\
+select product_id as id,	product_name as name,	price,	category,	discount \
+from products where \
+(category in ('Electronics','Appliances')and \
+price > 50) and\
+(product_name like 'S%' or product_name like '%X') and\
+ coalesce(discount, 0)<10\
+ order by price desc, product_name ;\
+\
+}
